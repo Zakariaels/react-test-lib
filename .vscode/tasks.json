@@ -1,0 +1,118 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "start dockers",
+            "type": "shell",
+            "command": "docker-compose start",
+            "options": {
+                "statusbar": {
+                    "label": "start dockers",
+                    "color": "#fa99b6",
+                } ,
+            },
+            "presentation": {
+                "panel": "new", 
+                "reveal": "always",
+                "focus": true,
+            }
+        },
+        {
+            "label": "docker-compose dockers",
+            "type": "shell",
+            "command": "docker-compose up -d",
+            "dependsOn": "build api sln",
+            "options": {
+                "statusbar": {
+                    "label": "docker-compose dockers",
+                    "color": "#9ff3eb",
+                } ,
+            },
+            "presentation": {
+                "panel": "new", 
+                "reveal": "always",
+                "focus": true,
+            }
+        },
+        {
+            "label": "build api",
+            "type": "shell",
+            "command": "dotnet build ~/development/Argonode/src/api/src/ChapsVision.Api/ChapsVision.Api.csproj",
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "options": {
+                "statusbar": {
+                    "label": "build api",
+                    "color": "#def3a5",
+                } 
+            },
+            "presentation": {
+                "panel": "new", 
+                "reveal": "always",
+                "focus": true,
+            }
+        },
+        {
+            "label": "build api sln",
+            "type": "shell",
+            "command": "dotnet build ~/development/Argonode/src/api/ChapsVision.Api.sln",
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "options": {
+                "statusbar": {
+                    "label": "build api sln",
+                    "color": "#a0bcf5",
+                } 
+            },
+            "presentation": {
+                "panel": "new", 
+                "reveal": "always",
+                "focus": true,
+            }
+        },
+        {
+            "label": "build and run api",
+            "type": "shell",
+            "command": "dotnet run --project ~/development/Argonode/src/api/src/ChapsVision.Api/ChapsVision.Api.csproj",
+            "dependsOn": "build api",
+            "options": {
+                "statusbar": {
+                    "label": "build and run api",
+                    "color": "#fcc8fc",
+
+                }            
+            ,
+            "presentation": {
+                "panel": "new", 
+                "reveal": "always",
+                "focus": true
+            }}
+        },
+        {
+            "label": "start app",
+            "type": "shell",
+            "command": "yarn start",
+
+            "options": {
+                "statusbar": {
+                    "label": "start app",
+                    "color": "#a9f0d2",
+
+                }            
+            ,
+            "presentation": {
+                "panel": "new", 
+                "reveal": "always",
+                "focus": true
+            }}
+        }
+    ]
+}
